@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only these two accounts can change anything. Keep in sync with firebase-config.js.
+    function isManager() {
+      return request.auth != null &&
+        request.auth.token.email.lower() in ['areef.mohamed1994@gmail.com', 'aaalimu@gmail.com'];
+    }
+    // Everyone can view the planner; only managers can edit.
+    match /config/{id}    { allow read: if true; allow write: if isManager(); }
+    match /staff/{id}     { allow read: if true; allow write: if isManager(); }
+    match /leaves/{id}    { allow read: if true; allow write: if isManager(); }
+    match /holidays/{id}  { allow read: if true; allow write: if isManager(); }
+    match /blackouts/{id} { allow read: if true; allow write: if isManager(); }
+    // Edit history: managers can add entries, nobody can change or delete them.
+    match /log/{id}       { allow read: if true; allow create: if isManager(); allow update, delete: if false; }
+  }
+}
