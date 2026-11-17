@@ -1,5 +1,7 @@
 # PAM Airport · Vacation Planner 2027
 
+**Live site:** https://hunnihhh.github.io/vacation-planner-2027/
+
 A shared calendar for the team's 2027 vacations. Everyone can view it. Only **Areef** and **Alim** can make changes, after signing in with their own passwords.
 
 **Features:** a year calendar for each person and for the whole team, remaining leave days, an easy date box ("1st January to 15th"), Fridays set as days off automatically, blackout dates with warnings, Maldives public holidays, a separate international holiday list, a full edit history, and an Excel download in the 2026 layout.
