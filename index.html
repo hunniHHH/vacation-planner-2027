@@ -588,6 +588,7 @@ function openDay(ds,focusLeave){
 /* ---- add / edit vacation ---- */
 function openLeave(existing,pre){
   if(!S.isEditor)return;
+  if(!S.staff.length){const sc0=modal(`<div class="mhd"><h3>Add vacation</h3><button class="xbtn" data-close>×</button></div><div class="mbd"><div class="alert blue"><span class="ai">📋</span><div><b>No team members yet.</b><br>Load the team first — it only needs to be done once.</div></div></div><div class="mft"><span style="flex:1"></span><button class="btn" data-close>Cancel</button><button class="btn pri" id="seedNow">Load team, leave types &amp; holidays</button></div>`);sc0.querySelector("#seedNow").onclick=async()=>{closeModal();await importSeed()};return}
   pre=pre||{};
   const st={staff:existing?existing.staff:(pre.staff||(S.staff[0]&&S.staff[0].id)||""),type:existing?existing.type:types()[0].code,
     start:existing?existing.start:(pre.start||""),end:existing?existing.end:(pre.start||""),off:new Set(existing?existing.off||[]:[]),seen:new Set(),note:existing?existing.note||"":""};
